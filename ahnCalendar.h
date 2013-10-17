@@ -12,7 +12,7 @@
 #import "ahnCalendarHelper.h"
 #import "ahnEvent.h"
 #define kCalendarXPadding 20
-#define kCalendarYPadding 25
+#define kCalendarYPadding 35
 @protocol ahnCalendarDelegate <NSObject>
 @required
 - (void)calendarWasTappedOnDay:(int)day month:(int)month year:(int)year withEvent:(ahnEvent *)event;

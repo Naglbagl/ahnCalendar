@@ -24,12 +24,12 @@
         [self initShapeLayer];
 
         
-        indicatorLabel_ = [[UILabel alloc]initWithFrame:CGRectMake(0, frame.size.height/32, frame.size.width, frame.size.height)];
+        indicatorLabel_ = [[UILabel alloc]initWithFrame:CGRectMake(0, frame.size.height/32 - 1, frame.size.width, frame.size.height)];
         [indicatorLabel_ setTextAlignment:NSTextAlignmentCenter];
         indicatorLabel_.adjustsFontSizeToFitWidth = NO;
-        [indicatorLabel_ setFont:[UIFont systemFontOfSize:frame.size.height/2]];
+        [indicatorLabel_ setFont:[UIFont boldSystemFontOfSize:frame.size.height/2]];
         
-        if (frame.size.height/2 < 9){
+        if (frame.size.height/2 < 8){
             [indicatorLabel_ setHidden:YES];
         }
         
