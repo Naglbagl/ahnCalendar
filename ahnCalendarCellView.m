@@ -43,7 +43,9 @@
 }
 
 -(void)cellTapped:(id)sender{
-    [self.cellDelegate calendarCellWithDay:[dateLabel_.text intValue] WasTappedWithEvent:_event];
+    if(dateLabel_.textColor != [UIColor grayColor]){
+        [self.cellDelegate calendarCellWithDay:[dateLabel_.text intValue] WasTappedWithEvent:_event];
+    }
 }
 
 -(void)setEvent:(ahnEvent *)event{

@@ -73,14 +73,14 @@
     NSDateComponents *components = dateViewed_.dateComponent;
     if (components.month == 12){
         components.month = 1;
-        components.year = components.year + 1;
+        components.yearForWeekOfYear = components.yearForWeekOfYear + 1;
         components.day = 1;
     }else{
         components.month = components.month + 1;
         components.day = 1;
     }
     
-    if (components.month == currDate_.dateComponent.month){
+    if (components.month == currDate_.dateComponent.month && components.year == currDate_.dateComponent.year){
         [self setCalendarViewWithDate:currDate_];
         if (_shouldHighLightCurrentDate){
             [self highlightDate:currDate_ withColor:[UIColor redColor]];
@@ -88,6 +88,8 @@
     }else{
         [self setCalendarViewWithDate:components.date];
     }
+    
+
 
 }
 
@@ -96,7 +98,7 @@
     NSDateComponents *components = dateViewed_.dateComponent;
     if (components.month == 1){
         components.month = 12;
-        components.year = components.year - 1;
+        components.yearForWeekOfYear = components.yearForWeekOfYear - 1;
         components.day = 1;
     }else{
         components.month = components.month -1;
@@ -104,7 +106,7 @@
     }
     
     
-    if (components.month == currDate_.dateComponent.month){
+    if (components.month == currDate_.dateComponent.month && components.year == currDate_.dateComponent.year){
         [self setCalendarViewWithDate:currDate_];
     }else{
         [self setCalendarViewWithDate:components.date];
@@ -125,7 +127,7 @@
 }
 
 -(void)highLightCurrentDate{
-    if (currDate_.dateComponent.month == dateViewed_.dateComponent.month){
+    if (currDate_.dateComponent.month == dateViewed_.dateComponent.month && currDate_.dateComponent.year == dateViewed_.dateComponent.year){
         if (self.shouldHighLightCurrentDate){
             [self highlightDate:currDate_ withColor:[UIColor redColor]];
         }else{
@@ -227,7 +229,7 @@
 
 -(void)shouldShowEventIndicator:(bool)shouldShowEventIndicator WithEvents:(NSArray *)events{
     for (ahnEvent *event in _events){
-        if (event.date.dateComponent.month == dateViewed_.dateComponent.month){
+        if (event.date.dateComponent.month == dateViewed_.dateComponent.month && event.date.dateComponent.year == dateViewed_.dateComponent.year){
             
             int weekday =(int)event.date.dateComponent.weekday-1;
             int weekOfMonth = (int)event.date.dateComponent.weekOfMonth-1;
@@ -239,7 +241,7 @@
 }
 
 -(void)setlbMonth:(int)month{
-    [lbMonth_ setText:[ahnCalendarHelper getMonthFromNumber:month]];
+    [lbMonth_ setText:[NSString stringWithFormat:@"%@ %i",[ahnCalendarHelper getMonthFromNumber:month],(int)dateViewed_.dateComponent.year]];
 }
 
 -(bool)ShouldHighLightCurrentDate{
