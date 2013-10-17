@@ -70,6 +70,13 @@
 
 //If they swiped Up then move forward in time
 -(void)calendarSwippedUp:(UISwipeGestureRecognizer *)swipe{
+    [UIView beginAnimations:@"fade" context:nil];
+    [UIView setAnimationDuration:kAnimationDuration];
+    dateView_.alpha = 0.0;
+    lbMonth_.alpha = 0.0;
+    [UIView commitAnimations];
+    
+    
     NSDateComponents *components = dateViewed_.dateComponent;
     if (components.month == 12){
         components.month = 1;
@@ -89,12 +96,24 @@
         [self setCalendarViewWithDate:components.date];
     }
     
+    [UIView beginAnimations:@"fade" context:nil];
+    [UIView setAnimationDuration:kAnimationDuration];
+    dateView_.alpha = 1.0;
+    lbMonth_.alpha = 1.0;
+    [UIView commitAnimations];
 
 
 }
 
 //If they swiped down move back in time
 -(void)calendarSwippedDown:(UISwipeGestureRecognizer *)swipe{
+    
+    [UIView beginAnimations:@"fade" context:nil];
+    [UIView setAnimationDuration:kAnimationDuration];
+    dateView_.alpha = 0.0;
+    lbMonth_.alpha = 0.0;
+    [UIView commitAnimations];
+    
     NSDateComponents *components = dateViewed_.dateComponent;
     if (components.month == 1){
         components.month = 12;
@@ -111,6 +130,12 @@
     }else{
         [self setCalendarViewWithDate:components.date];
     }
+    
+    [UIView beginAnimations:@"fade" context:nil];
+    [UIView setAnimationDuration:kAnimationDuration];
+    dateView_.alpha = 1.0;
+    lbMonth_.alpha = 1.0;
+    [UIView commitAnimations];
     
 }
 
