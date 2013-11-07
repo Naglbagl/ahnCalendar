@@ -1,6 +1,8 @@
 ahnCalendar
 ===========
 
+STILL IN DEVELOPMENT
+
 An open source Calendar for iOS Developers
 
 Todo:
