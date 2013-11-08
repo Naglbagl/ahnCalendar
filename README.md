@@ -18,3 +18,5 @@ Todo:
 
 5)Test on different devices
 5A)Report how well it worked
+
+6)Localize the Calendar(?)
