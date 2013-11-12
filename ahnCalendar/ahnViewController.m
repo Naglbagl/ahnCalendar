@@ -60,9 +60,10 @@
     aevc.dateSelectionHandler = ^(NSDate *date, NSString *name){
         bool foundDate = NO;
         for (ahnEvent *event in events){
-            if ([event.date isEqual:date]){
+            if (event.date.dateComponent.month ==  date.dateComponent.month && event.date.dateComponent.day ==  date.dateComponent.day && event.date.dateComponent.year ==  date.dateComponent.year){
                 NSMutableArray *array = [NSMutableArray arrayWithArray:event.events];
                 [array addObject:name];
+                event.events = array;
                 foundDate = YES;
                 break;
             }
