@@ -69,38 +69,50 @@
 
 
 //If they swiped Up then move forward in time
+//CHANGE ANIMATION HERE
 -(void)calendarSwippedUp:(UISwipeGestureRecognizer *)swipe{
-    [UIView beginAnimations:@"fade" context:nil];
-    [UIView setAnimationDuration:kAnimationDuration];
-    dateView_.alpha = 0.0;
-    lbMonth_.alpha = 0.0;
-    [UIView commitAnimations];
     
+    orginalFrameDateView_ = dateView_.frame;
+    orginalFrameMonthView_ = lbMonth_.frame;
     
-    NSDateComponents *components = dateViewed_.dateComponent;
-    if (components.month == 12){
-        components.month = 1;
-        components.yearForWeekOfYear = components.yearForWeekOfYear + 1;
-        components.day = 1;
-    }else{
-        components.month = components.month + 1;
-        components.day = 1;
-    }
-    
-    if (components.month == currDate_.dateComponent.month && components.year == currDate_.dateComponent.year){
-        [self setCalendarViewWithDate:currDate_];
-        if (_shouldHighLightCurrentDate){
-            [self highlightDate:currDate_ withColor:[UIColor redColor]];
+    [UIView animateWithDuration:kAnimationDuration * 0.7 animations:^{
+        [dateView_ setFrame:CGRectMake(dateView_.frame.origin.x, dateView_.frame.origin.y - 50, dateView_.frame.size.width, dateView_.frame.size.height)];
+        [lbMonth_ setFrame:CGRectMake(lbMonth_.frame.origin.x, lbMonth_.frame.origin.y - 50, lbMonth_.frame.size.width, lbMonth_.frame.size.height)];
+        dateView_.alpha = 0.0;
+        lbMonth_.alpha = 0.0;
+
+
+    } completion:^(BOOL finished) {
+        dateView_.frame =  orginalFrameDateView_;
+        lbMonth_.frame = orginalFrameMonthView_;
+        
+        NSDateComponents *components = dateViewed_.dateComponent;
+        if (components.month == 12){
+            components.month = 1;
+            components.yearForWeekOfYear = components.yearForWeekOfYear + 1;
+            components.day = 1;
+        }else{
+            components.month = components.month + 1;
+            components.day = 1;
         }
-    }else{
-        [self setCalendarViewWithDate:components.date];
-    }
-    
-    [UIView beginAnimations:@"fade" context:nil];
-    [UIView setAnimationDuration:kAnimationDuration];
-    dateView_.alpha = 1.0;
-    lbMonth_.alpha = 1.0;
-    [UIView commitAnimations];
+        
+        if (components.month == currDate_.dateComponent.month && components.year == currDate_.dateComponent.year){
+            [self setCalendarViewWithDate:currDate_];
+            if (_shouldHighLightCurrentDate){
+                [self highlightDate:currDate_ withColor:[UIColor redColor]];
+            }
+        }else{
+            [self setCalendarViewWithDate:components.date];
+        }
+        
+        
+        
+        [UIView beginAnimations:@"fade" context:nil];
+        [UIView setAnimationDuration:kAnimationDuration];
+        dateView_.alpha = 1.0;
+        lbMonth_.alpha = 1.0;
+        [UIView commitAnimations];
+    }];
 
 
 }
@@ -108,34 +120,45 @@
 //If they swiped down move back in time
 -(void)calendarSwippedDown:(UISwipeGestureRecognizer *)swipe{
     
-    [UIView beginAnimations:@"fade" context:nil];
-    [UIView setAnimationDuration:kAnimationDuration];
-    dateView_.alpha = 0.0;
-    lbMonth_.alpha = 0.0;
-    [UIView commitAnimations];
     
-    NSDateComponents *components = dateViewed_.dateComponent;
-    if (components.month == 1){
-        components.month = 12;
-        components.yearForWeekOfYear = components.yearForWeekOfYear - 1;
-        components.day = 1;
-    }else{
-        components.month = components.month -1;
-        components.day = 1;
-    }
+    orginalFrameDateView_ = dateView_.frame;
+    orginalFrameMonthView_ = lbMonth_.frame;
     
-    
-    if (components.month == currDate_.dateComponent.month && components.year == currDate_.dateComponent.year){
-        [self setCalendarViewWithDate:currDate_];
-    }else{
-        [self setCalendarViewWithDate:components.date];
-    }
-    
-    [UIView beginAnimations:@"fade" context:nil];
-    [UIView setAnimationDuration:kAnimationDuration];
-    dateView_.alpha = 1.0;
-    lbMonth_.alpha = 1.0;
-    [UIView commitAnimations];
+    [UIView animateWithDuration:kAnimationDuration * 0.7 animations:^{
+        [dateView_ setFrame:CGRectMake(dateView_.frame.origin.x, dateView_.frame.origin.y + 50, dateView_.frame.size.width, dateView_.frame.size.height)];
+        [lbMonth_ setFrame:CGRectMake(lbMonth_.frame.origin.x, lbMonth_.frame.origin.y + 50, lbMonth_.frame.size.width, lbMonth_.frame.size.height)];
+        dateView_.alpha = 0.0;
+        lbMonth_.alpha = 0.0;
+        
+        
+    } completion:^(BOOL finished) {
+        dateView_.frame =  orginalFrameDateView_;
+        lbMonth_.frame = orginalFrameMonthView_;
+        
+        NSDateComponents *components = dateViewed_.dateComponent;
+        if (components.month == 1){
+            components.month = 12;
+            components.yearForWeekOfYear = components.yearForWeekOfYear - 1;
+            components.day = 1;
+        }else{
+            components.month = components.month -1;
+            components.day = 1;
+        }
+        
+        
+        if (components.month == currDate_.dateComponent.month && components.year == currDate_.dateComponent.year){
+            [self setCalendarViewWithDate:currDate_];
+        }else{
+            [self setCalendarViewWithDate:components.date];
+        }
+        
+        
+        [UIView beginAnimations:@"fade" context:nil];
+        [UIView setAnimationDuration:kAnimationDuration];
+        dateView_.alpha = 1.0;
+        lbMonth_.alpha = 1.0;
+        [UIView commitAnimations];
+    }];
     
 }
 
@@ -310,6 +333,7 @@
 -(void)calendarCellWithDay:(int)day WasTappedWithEvent:(ahnEvent *)event{
     [_calendarDelegate calendarWasTappedOnDay:day month:(int)dateViewed_.dateComponent.month year:(int)dateViewed_.dateComponent.year withEvent:event];
 }
+
 
 
 @end

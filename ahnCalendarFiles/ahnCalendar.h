@@ -25,6 +25,8 @@
     NSDate* currDate_;
     NSDate* dateViewed_;
     ahnDatesView *dateView_;
+    CGRect orginalFrameMonthView_;
+    CGRect orginalFrameDateView_;
 }
 
 

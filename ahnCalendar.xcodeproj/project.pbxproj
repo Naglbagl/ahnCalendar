@@ -19,9 +19,9 @@
 		0334F4E5180C724A005E552F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0334F4E4180C724A005E552F /* XCTest.framework */; };
 		0334F4E6180C724A005E552F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0334F4C5180C724A005E552F /* Foundation.framework */; };
 		0334F4E7180C724A005E552F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0334F4C9180C724A005E552F /* UIKit.framework */; };
-		0334F4EF180C724A005E552F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0334F4ED180C724A005E552F /* InfoPlist.strings */; };
-		0334F4F1180C724A005E552F /* ahnCalendarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0334F4F0180C724A005E552F /* ahnCalendarTests.m */; };
 		037B8725180E0C450078CE41 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 037B8724180E0C450078CE41 /* QuartzCore.framework */; };
+		03C4753F18319A1000CCF916 /* ahnAddEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C4753D18319A1000CCF916 /* ahnAddEventViewController.m */; };
+		03C4754018319A1000CCF916 /* ahnAddEventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03C4753E18319A1000CCF916 /* ahnAddEventViewController.xib */; };
 		03E6AE4918101F4D000DB230 /* ahnCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E6AE3C18101F4D000DB230 /* ahnCalendar.m */; };
 		03E6AE4A18101F4D000DB230 /* ahnCalendarCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E6AE3E18101F4D000DB230 /* ahnCalendarCellView.m */; };
 		03E6AE4B18101F4D000DB230 /* ahnCalendarHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E6AE4018101F4D000DB230 /* ahnCalendarHelper.m */; };
@@ -58,10 +58,10 @@
 		0334F4DD180C724A005E552F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0334F4E3180C724A005E552F /* ahnCalendarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ahnCalendarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0334F4E4180C724A005E552F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		0334F4EC180C724A005E552F /* ahnCalendarTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ahnCalendarTests-Info.plist"; sourceTree = "<group>"; };
-		0334F4EE180C724A005E552F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		0334F4F0180C724A005E552F /* ahnCalendarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ahnCalendarTests.m; sourceTree = "<group>"; };
 		037B8724180E0C450078CE41 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		03C4753C18319A1000CCF916 /* ahnAddEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ahnAddEventViewController.h; sourceTree = "<group>"; };
+		03C4753D18319A1000CCF916 /* ahnAddEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ahnAddEventViewController.m; sourceTree = "<group>"; };
+		03C4753E18319A1000CCF916 /* ahnAddEventViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ahnAddEventViewController.xib; sourceTree = "<group>"; };
 		03E6AE3B18101F4D000DB230 /* ahnCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ahnCalendar.h; path = ahnCalendarFiles/ahnCalendar.h; sourceTree = "<group>"; };
 		03E6AE3C18101F4D000DB230 /* ahnCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ahnCalendar.m; path = ahnCalendarFiles/ahnCalendar.m; sourceTree = "<group>"; };
 		03E6AE3D18101F4D000DB230 /* ahnCalendarCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ahnCalendarCellView.h; path = ahnCalendarFiles/ahnCalendarCellView.h; sourceTree = "<group>"; };
@@ -106,9 +106,8 @@
 		0334F4B9180C724A005E552F = {
 			isa = PBXGroup;
 			children = (
-				03F84CCC180F608100E9BD9E /* ahnCalendar */,
+				03F84CCC180F608100E9BD9E /* ahnCalendarFramework */,
 				0334F4CB180C724A005E552F /* ahnCalendar */,
-				0334F4EA180C724A005E552F /* ahnCalendarTests */,
 				0334F4C4180C724A005E552F /* Frameworks */,
 				0334F4C3180C724A005E552F /* Products */,
 			);
@@ -140,6 +139,9 @@
 			children = (
 				0334F4D4180C724A005E552F /* ahnAppDelegate.h */,
 				0334F4D5180C724A005E552F /* ahnAppDelegate.m */,
+				03C4753C18319A1000CCF916 /* ahnAddEventViewController.h */,
+				03C4753D18319A1000CCF916 /* ahnAddEventViewController.m */,
+				03C4753E18319A1000CCF916 /* ahnAddEventViewController.xib */,
 				0334F4D7180C724A005E552F /* Main.storyboard */,
 				0334F4DA180C724A005E552F /* ahnViewController.h */,
 				0334F4DB180C724A005E552F /* ahnViewController.m */,
@@ -160,25 +162,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		0334F4EA180C724A005E552F /* ahnCalendarTests */ = {
-			isa = PBXGroup;
-			children = (
-				0334F4F0180C724A005E552F /* ahnCalendarTests.m */,
-				0334F4EB180C724A005E552F /* Supporting Files */,
-			);
-			path = ahnCalendarTests;
-			sourceTree = "<group>";
-		};
-		0334F4EB180C724A005E552F /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				0334F4EC180C724A005E552F /* ahnCalendarTests-Info.plist */,
-				0334F4ED180C724A005E552F /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		03F84CCC180F608100E9BD9E /* ahnCalendar */ = {
+		03F84CCC180F608100E9BD9E /* ahnCalendarFramework */ = {
 			isa = PBXGroup;
 			children = (
 				03E6AE3B18101F4D000DB230 /* ahnCalendar.h */,
@@ -196,7 +180,7 @@
 				03E6AE4718101F4D000DB230 /* NSDate+NSDate_ahnDateComponents.h */,
 				03E6AE4818101F4D000DB230 /* NSDate+NSDate_ahnDateComponents.m */,
 			);
-			name = ahnCalendar;
+			name = ahnCalendarFramework;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,6 +263,7 @@
 				0334F4DE180C724A005E552F /* Images.xcassets in Resources */,
 				0334F4D0180C724A005E552F /* InfoPlist.strings in Resources */,
 				0334F4D9180C724A005E552F /* Main.storyboard in Resources */,
+				03C4754018319A1000CCF916 /* ahnAddEventViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,7 +271,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0334F4EF180C724A005E552F /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0334F4D6180C724A005E552F /* ahnAppDelegate.m in Sources */,
+				03C4753F18319A1000CCF916 /* ahnAddEventViewController.m in Sources */,
 				03E6AE4F18101F4D000DB230 /* NSDate+NSDate_ahnDateComponents.m in Sources */,
 				0334F4DC180C724A005E552F /* ahnViewController.m in Sources */,
 				03E6AE4E18101F4D000DB230 /* ahnEventIndicatorView.m in Sources */,
@@ -314,7 +299,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0334F4F1180C724A005E552F /* ahnCalendarTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,14 +327,6 @@
 				0334F4D8180C724A005E552F /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		0334F4ED180C724A005E552F /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0334F4EE180C724A005E552F /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

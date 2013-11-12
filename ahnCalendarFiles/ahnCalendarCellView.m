@@ -49,7 +49,7 @@
 }
 
 -(void)setEvent:(ahnEvent *)event{
-    if (event != nil){
+    if (event != nil && event.events.count > 0){
         [eventIndicator_.indicatorLabel setText:[NSString stringWithFormat:@"%lu", (unsigned long)event.events.count]];
         if (_shouldShowEventIndicator){
             [eventIndicator_ setHidden:NO];

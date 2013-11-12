@@ -8,7 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "ahnCalendar.h"
-@interface ahnViewController : UIViewController <ahnCalendarDelegate>
+#import "ahnAddEventViewController.h"
+@interface ahnViewController : UIViewController <ahnCalendarDelegate>{
+    NSMutableArray *events;
+}
+//Properties
 @property (strong, nonatomic) IBOutlet ahnCalendar *calendar;
+
+
+//Actions
+- (IBAction)btnAddTapped:(id)sender;
 
 @end
