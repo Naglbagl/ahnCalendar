@@ -9,5 +9,5 @@ Features:
 
 Download the demo project to see how it works. 
 
-Screenshots to come!
+![Alt text](/Screenshot.png "Screenshot of Calendar")
 
