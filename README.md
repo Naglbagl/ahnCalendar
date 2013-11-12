@@ -9,10 +9,5 @@ Features:
 
 Download the demo project to see how it works. 
 
-
-
-as
-
-
-ads
+Screenshots to come!
 
