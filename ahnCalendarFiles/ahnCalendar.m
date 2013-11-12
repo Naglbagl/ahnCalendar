@@ -65,15 +65,16 @@
     self.userInteractionEnabled = YES;
     
     [dateView_ setCellDelegate:self];
+    
+    orginalFrameDateView_ = dateView_.frame;
+    orginalFrameMonthView_ = lbMonth_.frame;
 }
 
 
 //If they swiped Up then move forward in time
-//CHANGE ANIMATION HERE
 -(void)calendarSwippedUp:(UISwipeGestureRecognizer *)swipe{
     
-    orginalFrameDateView_ = dateView_.frame;
-    orginalFrameMonthView_ = lbMonth_.frame;
+
     
     [UIView animateWithDuration:kAnimationDuration * 0.7 animations:^{
         [dateView_ setFrame:CGRectMake(dateView_.frame.origin.x, dateView_.frame.origin.y - 50, dateView_.frame.size.width, dateView_.frame.size.height)];
@@ -119,10 +120,6 @@
 
 //If they swiped down move back in time
 -(void)calendarSwippedDown:(UISwipeGestureRecognizer *)swipe{
-    
-    
-    orginalFrameDateView_ = dateView_.frame;
-    orginalFrameMonthView_ = lbMonth_.frame;
     
     [UIView animateWithDuration:kAnimationDuration * 0.7 animations:^{
         [dateView_ setFrame:CGRectMake(dateView_.frame.origin.x, dateView_.frame.origin.y + 50, dateView_.frame.size.width, dateView_.frame.size.height)];
