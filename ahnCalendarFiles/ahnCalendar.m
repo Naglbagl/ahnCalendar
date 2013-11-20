@@ -86,17 +86,7 @@
 }
 
 -(void)calendarSwippedLeft:(UIGestureRecognizer *)swipe{
-    [UIView animateWithDuration:kAnimationDuration animations:^{
-        [dateView_ setFrame:CGRectMake(dateView_.frame.origin.x-50, dateView_.frame.origin.y, dateView_.frame.size.width, dateView_.frame.size.height)];
-        [lbMonth_ setFrame:CGRectMake(lbMonth_.frame.origin.x-50, lbMonth_.frame.origin.y, lbMonth_.frame.size.width, lbMonth_.frame.size.height)];
-        dateView_.alpha = 0.0;
-        lbMonth_.alpha = 0.0;
-        
-        
-    } completion:^(BOOL finished) {
-        [dateView_ setFrame:CGRectMake(orginalFrameDateView_.origin.x+50, orginalFrameDateView_.origin.y, orginalFrameDateView_.size.width, orginalFrameDateView_.size.height)];
-        [lbMonth_ setFrame:CGRectMake(orginalFrameMonthView_.origin.x+50, orginalFrameMonthView_.origin.y, orginalFrameMonthView_.size.width, orginalFrameMonthView_.size.height)];
-        
+    [self animateCalendarInXDirection:-50 andYDirection:0 withBlock:^{
         NSDateComponents *components = dateViewed_.dateComponent;
         
         components.yearForWeekOfYear = components.yearForWeekOfYear + 1;
@@ -109,29 +99,15 @@
         }else{
             [self setCalendarViewWithDate:components.date];
         }
-        
-        [UIView animateWithDuration:kAnimationDuration animations:^{
-            dateView_.alpha = 1.0;
-            lbMonth_.alpha = 1.0;
-            dateView_.frame = orginalFrameDateView_;
-            lbMonth_.frame = orginalFrameMonthView_;
-        }];
-        
+
     }];
+
 }
 
 -(void)calendarSwippedRight:(UIGestureRecognizer *)swipe{
-    [UIView animateWithDuration:kAnimationDuration animations:^{
-        [dateView_ setFrame:CGRectMake(dateView_.frame.origin.x+50, dateView_.frame.origin.y, dateView_.frame.size.width, dateView_.frame.size.height)];
-        [lbMonth_ setFrame:CGRectMake(lbMonth_.frame.origin.x+50, lbMonth_.frame.origin.y, lbMonth_.frame.size.width, lbMonth_.frame.size.height)];
-        dateView_.alpha = 0.0;
-        lbMonth_.alpha = 0.0;
-        
-        
-    } completion:^(BOOL finished) {
-        [dateView_ setFrame:CGRectMake(orginalFrameDateView_.origin.x-50, orginalFrameDateView_.origin.y, orginalFrameDateView_.size.width, orginalFrameDateView_.size.height)];
-        [lbMonth_ setFrame:CGRectMake(orginalFrameMonthView_.origin.x-50, orginalFrameMonthView_.origin.y, orginalFrameMonthView_.size.width, orginalFrameMonthView_.size.height)];
-        
+    
+    
+    [self animateCalendarInXDirection:50 andYDirection:0 withBlock:^{
         NSDateComponents *components = dateViewed_.dateComponent;
         
         components.yearForWeekOfYear = components.yearForWeekOfYear - 1;
@@ -144,31 +120,13 @@
         }else{
             [self setCalendarViewWithDate:components.date];
         }
-        
-        [UIView animateWithDuration:kAnimationDuration animations:^{
-            dateView_.alpha = 1.0;
-            lbMonth_.alpha = 1.0;
-            dateView_.frame = orginalFrameDateView_;
-            lbMonth_.frame = orginalFrameMonthView_;
-        }];
-        
+
     }];
 }
 
-//If they swiped Up then move forward in time
 -(void)calendarSwippedUp:(UISwipeGestureRecognizer *)swipe{
     
-    [UIView animateWithDuration:kAnimationDuration animations:^{
-        [dateView_ setFrame:CGRectMake(dateView_.frame.origin.x, dateView_.frame.origin.y - 50, dateView_.frame.size.width, dateView_.frame.size.height)];
-        [lbMonth_ setFrame:CGRectMake(lbMonth_.frame.origin.x, lbMonth_.frame.origin.y - 50, lbMonth_.frame.size.width, lbMonth_.frame.size.height)];
-        dateView_.alpha = 0.0;
-        lbMonth_.alpha = 0.0;
-
-
-    } completion:^(BOOL finished) {
-        [dateView_ setFrame:CGRectMake(orginalFrameDateView_.origin.x, orginalFrameDateView_.origin.y + 50, orginalFrameDateView_.size.width, orginalFrameDateView_.size.height)];
-        [lbMonth_ setFrame:CGRectMake(orginalFrameMonthView_.origin.x, orginalFrameMonthView_.origin.y + 50, orginalFrameMonthView_.size.width, orginalFrameMonthView_.size.height)];
-        
+    [self animateCalendarInXDirection:0 andYDirection:-50 withBlock:^{
         NSDateComponents *components = dateViewed_.dateComponent;
         if (components.month == 12){
             components.month = 1;
@@ -187,33 +145,16 @@
         }else{
             [self setCalendarViewWithDate:components.date];
         }
-        
-        [UIView animateWithDuration:kAnimationDuration animations:^{
-            dateView_.alpha = 1.0;
-            lbMonth_.alpha = 1.0;
-            dateView_.frame = orginalFrameDateView_;
-            lbMonth_.frame = orginalFrameMonthView_;
-        }];
 
     }];
-
+    
 
 }
 
-//If they swiped down move back in time
 -(void)calendarSwippedDown:(UISwipeGestureRecognizer *)swipe{
     
-    [UIView animateWithDuration:kAnimationDuration animations:^{
-        [dateView_ setFrame:CGRectMake(dateView_.frame.origin.x, dateView_.frame.origin.y + 50, dateView_.frame.size.width, dateView_.frame.size.height)];
-        [lbMonth_ setFrame:CGRectMake(lbMonth_.frame.origin.x, lbMonth_.frame.origin.y + 50, lbMonth_.frame.size.width, lbMonth_.frame.size.height)];
-        dateView_.alpha = 0.0;
-        lbMonth_.alpha = 0.0;
-        
-        
-    } completion:^(BOOL finished) {
-        [dateView_ setFrame:CGRectMake(orginalFrameDateView_.origin.x, orginalFrameDateView_.origin.y - 50, orginalFrameDateView_.size.width, orginalFrameDateView_.size.height)];
-        [lbMonth_ setFrame:CGRectMake(orginalFrameMonthView_.origin.x, orginalFrameMonthView_.origin.y - 50, orginalFrameMonthView_.size.width, orginalFrameMonthView_.size.height)];
-        
+    
+    [self animateCalendarInXDirection:0 andYDirection:50 withBlock:^{
         NSDateComponents *components = dateViewed_.dateComponent;
         if (components.month == 1){
             components.month = 12;
@@ -231,6 +172,24 @@
             [self setCalendarViewWithDate:components.date];
         }
         
+    }];
+
+    
+}
+
+-(void)animateCalendarInXDirection:(float)x andYDirection:(float)y withBlock:(void (^)(void))block{
+    [UIView animateWithDuration:kAnimationDuration animations:^{
+        [dateView_ setFrame:CGRectMake(dateView_.frame.origin.x + x, dateView_.frame.origin.y + y, dateView_.frame.size.width, dateView_.frame.size.height)];
+        [lbMonth_ setFrame:CGRectMake(lbMonth_.frame.origin.x + x, lbMonth_.frame.origin.y + y, lbMonth_.frame.size.width, lbMonth_.frame.size.height)];
+        dateView_.alpha = 0.0;
+        lbMonth_.alpha = 0.0;
+        
+        
+    } completion:^(BOOL finished) {
+        [dateView_ setFrame:CGRectMake(orginalFrameDateView_.origin.x - x, orginalFrameDateView_.origin.y - y, orginalFrameDateView_.size.width, orginalFrameDateView_.size.height)];
+        [lbMonth_ setFrame:CGRectMake(orginalFrameMonthView_.origin.x - x, orginalFrameMonthView_.origin.y - y, orginalFrameMonthView_.size.width, orginalFrameMonthView_.size.height)];
+        
+        block();
         
         [UIView animateWithDuration:kAnimationDuration animations:^{
             dateView_.alpha = 1.0;
@@ -238,9 +197,8 @@
             dateView_.frame = orginalFrameDateView_;
             lbMonth_.frame = orginalFrameMonthView_;
         }];
-
+        
     }];
-    
 }
 
 
