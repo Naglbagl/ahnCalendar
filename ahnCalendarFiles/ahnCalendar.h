@@ -11,9 +11,13 @@
 #import "NSDate+NSDate_ahnDateComponents.h"
 #import "ahnCalendarHelper.h"
 #import "ahnEvent.h"
+
+
 #define kCalendarXPadding 20
 #define kCalendarYPadding 35
-#define kAnimationDuration .4
+#define kCalendarAnimationDuration .25
+
+
 @protocol ahnCalendarDelegate <NSObject>
 @required
 - (void)calendarWasTappedOnDay:(int)day month:(int)month year:(int)year withEvent:(ahnEvent *)event;

@@ -28,12 +28,12 @@
     _events = [[NSArray alloc]init];
     
     //Initialize the label
-    lbMonth_ = [[UILabel alloc]initWithFrame:CGRectMake(0, 10, self.frame.size.width, 20)];
+    lbMonth_ = [[UILabel alloc]initWithFrame:CGRectMake(0, 25, self.frame.size.width, 20)];
     [lbMonth_ setTextAlignment:NSTextAlignmentCenter];
     
     
     //Create the view that just displays the dates
-     dateView_ = [[ahnDatesView alloc]initWithFrame:CGRectMake(kCalendarXPadding, kCalendarYPadding + lbMonth_.frame.origin.y, self.frame.size.width-(kCalendarXPadding*2), self.frame.size.height - (kCalendarYPadding + lbMonth_.frame.origin.y)*1.5)];
+     dateView_ = [[ahnDatesView alloc]initWithFrame:CGRectMake(kCalendarXPadding, 2 * lbMonth_.frame.origin.y + lbMonth_.frame.size.height, self.frame.size.width-(kCalendarXPadding*2), self.frame.size.height - (2 * lbMonth_.frame.origin.y + lbMonth_.frame.size.height)*1.5)];
     
     //Set it to the subview
     [self addSubview:dateView_];
@@ -86,7 +86,7 @@
 }
 
 -(void)calendarSwippedLeft:(UIGestureRecognizer *)swipe{
-    [self animateCalendarInXDirection:-50 andYDirection:0 withBlock:^{
+    [self animateCalendarInXDirection:-kCalendarXPadding andYDirection:0 withBlock:^{
         NSDateComponents *components = dateViewed_.dateComponent;
         
         components.yearForWeekOfYear = components.yearForWeekOfYear + 1;
@@ -107,7 +107,7 @@
 -(void)calendarSwippedRight:(UIGestureRecognizer *)swipe{
     
     
-    [self animateCalendarInXDirection:50 andYDirection:0 withBlock:^{
+    [self animateCalendarInXDirection:kCalendarXPadding andYDirection:0 withBlock:^{
         NSDateComponents *components = dateViewed_.dateComponent;
         
         components.yearForWeekOfYear = components.yearForWeekOfYear - 1;
@@ -126,7 +126,7 @@
 
 -(void)calendarSwippedUp:(UISwipeGestureRecognizer *)swipe{
     
-    [self animateCalendarInXDirection:0 andYDirection:-50 withBlock:^{
+    [self animateCalendarInXDirection:0 andYDirection:-lbMonth_.frame.origin.y withBlock:^{
         NSDateComponents *components = dateViewed_.dateComponent;
         if (components.month == 12){
             components.month = 1;
@@ -154,7 +154,7 @@
 -(void)calendarSwippedDown:(UISwipeGestureRecognizer *)swipe{
     
     
-    [self animateCalendarInXDirection:0 andYDirection:50 withBlock:^{
+    [self animateCalendarInXDirection:0 andYDirection:lbMonth_.frame.origin.y withBlock:^{
         NSDateComponents *components = dateViewed_.dateComponent;
         if (components.month == 1){
             components.month = 12;
@@ -178,7 +178,7 @@
 }
 
 -(void)animateCalendarInXDirection:(float)x andYDirection:(float)y withBlock:(void (^)(void))block{
-    [UIView animateWithDuration:kAnimationDuration animations:^{
+    [UIView animateWithDuration:kCalendarAnimationDuration animations:^{
         [dateView_ setFrame:CGRectMake(dateView_.frame.origin.x + x, dateView_.frame.origin.y + y, dateView_.frame.size.width, dateView_.frame.size.height)];
         [lbMonth_ setFrame:CGRectMake(lbMonth_.frame.origin.x + x, lbMonth_.frame.origin.y + y, lbMonth_.frame.size.width, lbMonth_.frame.size.height)];
         dateView_.alpha = 0.0;
@@ -191,7 +191,7 @@
         
         block();
         
-        [UIView animateWithDuration:kAnimationDuration animations:^{
+        [UIView animateWithDuration:kCalendarAnimationDuration animations:^{
             dateView_.alpha = 1.0;
             lbMonth_.alpha = 1.0;
             dateView_.frame = orginalFrameDateView_;
@@ -200,8 +200,6 @@
         
     }];
 }
-
-
 
 -(void)highlightDate:(NSDate *)date withColor:(UIColor *)color{
     
