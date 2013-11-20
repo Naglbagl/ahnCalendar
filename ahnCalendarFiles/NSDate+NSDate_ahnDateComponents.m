@@ -16,7 +16,7 @@
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     
     //Get the  components of the calandar
-    NSDateComponents *calendarComponts = [gregorian components:NSCalendarCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSWeekdayCalendarUnit|NSYearCalendarUnit|NSYearForWeekOfYearCalendarUnit|NSWeekOfMonthCalendarUnit|NSWeekdayOrdinalCalendarUnit fromDate:self];
+    NSDateComponents *calendarComponts = [gregorian components:NSCalendarCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSWeekdayCalendarUnit|NSYearCalendarUnit|NSYearForWeekOfYearCalendarUnit|NSWeekOfMonthCalendarUnit|NSWeekdayOrdinalCalendarUnit|NSYearCalendarUnit fromDate:self];
     
     return calendarComponts;
 }
