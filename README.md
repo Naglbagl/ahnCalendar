@@ -1,4 +1,4 @@
-ahnCalendar Beta 0.1
+ahnCalendar v1.0
 ===========
 
 An open source iOS 7 Style Calendar for iOS Developers.
